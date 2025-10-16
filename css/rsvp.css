@@ -1,0 +1,512 @@
+/* Секция подтверждения присутствия с анкетой */
+#rsvp {
+    background: linear-gradient(135deg, var(--dusty-pink) 0%, var(--light-cream) 100%);
+    text-align: center;
+    padding: 60px 0; /* Уменьшили отступы секции */
+}
+
+#rsvp h2 {
+    font-size: 3.2em;
+    margin-bottom: 30px;
+    color: var(--dark-gray);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 500;
+}
+
+.rsvp-deadline {
+    font-size: 1.4em;
+    color: var(--olive-green);
+    margin-bottom: 40px; /* Уменьшили отступ */
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Стили формы */
+.rsvp-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px; /* Уменьшили внутренние отступы формы */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-extra-large);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--olive-green);
+}
+
+.form-group {
+    margin-bottom: 15px; /* Уменьшили отступы между группами */
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px; /* Уменьшили отступ под labels */
+    font-weight: 500;
+    color: var(--dark-gray);
+    font-size: 1.1em;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--dusty-pink);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: var(--font-primary);
+    background: var(--light-cream);
+    transition: all var(--transition-fast);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--olive-green);
+    box-shadow: 0 0 0 3px rgba(81, 96, 67, 0.1);
+}
+
+/* Стили для радио-кнопок и чекбоксов */
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Уменьшили отступы */
+}
+
+.radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Уменьшили отступы */
+    cursor: pointer;
+    padding: 6px 10px; /* Уменьшили отступы */
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+    font-weight: 400;
+}
+
+.radio-label:hover, .checkbox-label:hover {
+    background: rgba(214, 183, 183, 0.1);
+}
+
+.radio-input, .checkbox-input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--olive-green);
+}
+
+/* Скрываемые поля с анимацией */
+.hidden-field {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+    margin-bottom: 0;
+}
+
+.hidden-field.visible {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-bottom: 15px; /* Уменьшили отступ для видимых полей */
+}
+
+/* Красивая кнопка отправки */
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--olive-green) 0%, var(--olive-green-light) 100%);
+    color: var(--light-cream);
+    padding: 14px 35px; /* Уменьшили отступы кнопки */
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 20px; /* Уменьшили отступ кнопки */
+    width: auto;
+    min-width: 200px;
+    box-shadow: 
+        0 8px 25px rgba(81, 96, 67, 0.3),
+        0 0 0 2px rgba(81, 96, 67, 0.1);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-primary);
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 15px 35px rgba(81, 96, 67, 0.4),
+        0 0 0 3px rgba(81, 96, 67, 0.15);
+    background: linear-gradient(135deg, var(--olive-green-light) 0%, var(--olive-green) 100%);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 4px 15px rgba(81, 96, 67, 0.2);
+}
+
+.submit-btn .btn-icon {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(3px);
+}
+
+/* Сообщения */
+.form-message {
+    padding: 12px; /* Уменьшили отступы */
+    border-radius: 8px;
+    margin-top: 15px; /* Уменьшили отступ */
+    font-weight: 500;
+    text-align: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-message.success {
+    background: rgba(81, 96, 67, 0.1);
+    color: var(--olive-green);
+    border: 1px solid var(--olive-green);
+}
+
+.form-message.error {
+    background: rgba(214, 183, 183, 0.1);
+    color: var(--dusty-pink-dark);
+    border: 1px solid var(--dusty-pink);
+}
+
+/* Кнопка копирования для Telegram */
+.copy-telegram-btn {
+    display: block;
+    margin: 12px auto 0; /* Уменьшили отступы */
+    padding: 10px 20px; /* Уменьшили отступы */
+    background: linear-gradient(135deg, #0088cc, #00aced);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+}
+
+.copy-telegram-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+}
+
+/* Уменьшаем отступы для мобильных */
+@media (max-width: 768px) {
+    #rsvp {
+        padding: 50px 0; /* Уменьшили отступы секции на мобильных */
+    }
+    
+    #rsvp h2 {
+        font-size: 2.5em; /* Уменьшили заголовок */
+        margin-bottom: 25px;
+    }
+    
+    .rsvp-deadline {
+        font-size: 1.3em; /* Уменьшили шрифт */
+        margin-bottom: 30px;
+    }
+    
+    .rsvp-form {
+        padding: 20px; /* Уменьшили внутренние отступы на мобильных */
+        margin: 0 15px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px !important; /* Уменьшили с 35px */
+    }
+    
+    .form-group label {
+        margin-bottom: 8px !important;
+        font-size: 1.1em !important; /* Уменьшили шрифт labels */
+    }
+    
+    .form-input {
+        font-size: 1.1em !important;
+        padding: 14px 16px !important;
+    }
+    
+    .radio-group, .checkbox-group {
+        gap: 8px !important;
+    }
+    
+    .radio-label, .checkbox-label {
+        font-size: 1.1em !important;
+        padding: 8px 12px !important;
+        gap: 10px !important;
+    }
+    
+    .radio-input, .checkbox-input {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    .hidden-field.visible {
+        margin-bottom: 20px !important; /* Уменьшили с 35px */
+    }
+    
+    .submit-btn {
+        margin-top: 25px !important; /* Уменьшили с 40px */
+        padding: 16px 40px !important;
+        font-size: 1.2em !important; /* Уменьшили шрифт кнопки */
+        min-width: 180px !important;
+    }
+    
+    .form-message {
+        font-size: 1.1em !important;
+        padding: 15px !important;
+        margin-top: 20px !important;
+    }
+    
+    .copy-telegram-btn {
+        padding: 12px 24px !important;
+        font-size: 1em !important;
+        margin-top: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .rsvp-form {
+        padding: 18px 15px;
+        margin: 0 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+    
+    .form-group label {
+        font-size: 1em !important;
+    }
+    
+    .form-input {
+        font-size: 1em !important;
+        padding: 12px 14px !important;
+    }
+    
+    .submit-btn {
+        margin-top: 20px !important;
+        padding: 14px 35px !important;
+        font-size: 1.1em !important;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 360px) {
+    .rsvp-form {
+        padding: 15px 12px;
+        margin: 0 8px;
+    }
+    
+    #rsvp h2 {
+        font-size: 2.2em;
+    }
+    
+    .form-group label {
+        font-size: 0.9em !important;
+    }
+    
+    .submit-btn {
+        padding: 12px 30px !important;
+        font-size: 1em !important;
+    }
+}
+
+/* Футер с обратным отсчётом */
+footer {
+    background: linear-gradient(135deg, var(--dark-gray-dark) 0%, var(--dark-gray) 100%);
+    color: var(--light-cream);
+    padding: 50px 0; /* Уменьшили отступы */
+    text-align: center;
+}
+
+.countdown-container {
+    margin-bottom: 30px; /* Уменьшили отступ */
+}
+
+.countdown-title {
+    font-size: 1.4em; /* Уменьшили шрифт */
+    margin-bottom: 25px;
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Уменьшили отступы */
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.countdown-item {
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 15px 12px; /* Уменьшили отступы */
+    min-width: 80px; /* Уменьшили ширину */
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-fast);
+}
+
+.countdown-item:hover {
+    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.countdown-number {
+    font-size: 2em; /* Уменьшили шрифт */
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-label {
+    font-size: 0.8em;
+    color: var(--light-cream);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.countdown-completed {
+    font-size: 1.6em; /* Уменьшили шрифт */
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+    font-size: 1.2em; /* Уменьшили шрифт */
+    margin-bottom: 15px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--light-cream);
+}
+
+.hearts {
+    font-size: 1.6em; /* Уменьшили шрифт */
+    opacity: 0.8;
+    color: var(--gold);
+}
+
+/* Адаптивность футера */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 0;
+    }
+    
+    .countdown-title {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+    
+    .countdown {
+        gap: 10px;
+    }
+    
+    .countdown-item {
+        min-width: 70px;
+        padding: 12px 8px;
+    }
+    
+    .countdown-number {
+        font-size: 1.8em;
+    }
+    
+    .countdown-label {
+        font-size: 0.75em;
+    }
+    
+    footer p {
+        font-size: 1.1em;
+    }
+    
+    .hearts {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown {
+        gap: 8px;
+    }
+    
+    .countdown-item {
+        min-width: 65px;
+        padding: 10px 6px;
+    }
+    
+    .countdown-number {
+        font-size: 1.6em;
+    }
+    
+    .countdown-label {
+        font-size: 0.7em;
+    }
+    
+    .countdown-title {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+    
+    .countdown-completed {
+        font-size: 1.4em;
+    }
+    
+    footer p {
+        font-size: 1em;
+    }
+}

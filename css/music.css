@@ -1,0 +1,478 @@
+/* Музыкальный промпт - исправленные кнопки */
+.music-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 45, 45, 0.98);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(15px);
+    opacity: 1;
+    transition: opacity var(--transition-medium);
+}
+
+.music-prompt.visible {
+    display: flex;
+}
+
+.prompt-content {
+    background: var(--light-cream);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 
+        var(--shadow-extra-large),
+        0 0 0 3px var(--gold);
+    border: 2px solid var(--gold);
+    transform: translateY(0);
+    opacity: 1;
+    transition: all var(--transition-medium);
+    position: relative;
+    z-index: 10001;
+    overflow: hidden; /* Важно: предотвращаем выход содержимого за границы */
+}
+
+/* Загрузчик */
+.prompt-loader {
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--dusty-pink-light);
+    border-top: 3px solid var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+.prompt-loader p {
+    color: var(--dark-gray);
+    font-style: italic;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+
+.prompt-content h3 {
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.prompt-content p {
+    color: var(--dark-gray);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+.music-prompt-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.prompt-btn {
+    padding: 12px 30px;
+    border: 2px solid transparent; /* Фиксируем границу */
+    border-radius: 25px;
+    font-family: var(--font-primary);
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Упрощаем transition */
+    font-weight: 500;
+    font-style: normal;
+    position: relative;
+    z-index: 1;
+    min-width: 140px;
+    background-position: center center;
+    background-size: 200% 200%;
+    overflow: hidden; /* Важно: предотвращаем выход псевдоэлементов */
+}
+
+.prompt-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Градиент для кнопки включения - исправленный */
+.btn-enable {
+    background: linear-gradient(135deg, var(--olive-green) 0%, var(--olive-green-light) 100%);
+    color: var(--light-cream);
+    border-color: var(--olive-green); /* Используем border-color вместо border */
+}
+
+/* Градиент для кнопки пропуска - исправленный */
+.btn-skip {
+    background: linear-gradient(135deg, var(--light-cream) 0%, var(--dusty-pink-light) 100%);
+    color: var(--dark-gray);
+    border-color: var(--dark-gray); /* Используем border-color вместо border */
+}
+
+/* Убираем сложные анимации градиента и заменяем на простые */
+.prompt-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(45, 45, 45, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Плавная кривая */
+}
+
+.btn-enable:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--olive-green-light) 0%, var(--olive-green) 100%);
+    box-shadow: 0 6px 15px rgba(81, 96, 67, 0.3);
+}
+
+.btn-skip:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--dark-gray) 0%, var(--dark-gray-light) 100%);
+    color: var(--light-cream);
+    border-color: var(--dark-gray);
+    box-shadow: 0 6px 15px rgba(45, 45, 45, 0.3);
+}
+
+/* Упрощаем эффект блеска - делаем его менее агрессивным */
+.prompt-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2), /* Уменьшаем непрозрачность */
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: -1;
+}
+
+.prompt-btn:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+/* Добавляем активное состояние для кнопок */
+.prompt-btn:active:not(:disabled) {
+    transform: translateY(0); /* Сбрасываем трансформацию при клике */
+    transition: transform 0.1s ease;
+}
+
+/* Скрытый промпт */
+.music-prompt.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease, visibility 0.6s step-end;
+    visibility: hidden;
+}
+
+.music-prompt.hidden .prompt-content {
+    transform: translateY(-30px) scale(0.95);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Улучшаем видимость фона */
+.music-prompt::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(212, 175, 55, 0.15) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(81, 96, 67, 0.1) 0%,
+            transparent 50%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(45, 45, 45, 0.95) 0%,
+            rgba(45, 45, 45, 0.98) 100%
+        );
+    z-index: -1;
+}
+
+/* Декоративные элементы */
+.music-prompt::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: gentlePulse 4s ease-in-out infinite;
+}
+
+.music-prompt .decorative-circle {
+    position: absolute;
+    bottom: 25%;
+    right: 20%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(81, 96, 67, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: gentlePulse 5s ease-in-out infinite 1s;
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* Музыкальный плеер */
+.music-player {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.music-player.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.music-toggle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--olive-green) 0%, var(--dark-gray) 100%);
+    border: 3px solid var(--light-cream);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 8px 25px rgba(45, 45, 45, 0.3),
+        0 0 0 1px rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.music-toggle:hover {
+    transform: scale(1.05); /* Уменьшаем масштаб для плавности */
+    box-shadow: 
+        0 10px 25px rgba(45, 45, 45, 0.4),
+        0 0 0 2px rgba(212, 175, 55, 0.3);
+}
+
+.music-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--dusty-pink) 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.music-toggle:hover::before {
+    opacity: 0.2;
+}
+
+.music-icon {
+    font-size: 24px;
+    color: var(--light-cream);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.music-toggle.playing .music-icon {
+    animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+    0%, 100% { 
+        transform: scale(1); 
+    }
+    50% { 
+        transform: scale(1.1); 
+    }
+}
+
+.music-toggle.playing {
+    background: linear-gradient(135deg, var(--olive-green-light) 0%, var(--dark-gray-light) 100%);
+    box-shadow: 
+        0 8px 25px rgba(212, 175, 55, 0.3),
+        0 0 0 2px rgba(212, 175, 55, 0.3);
+}
+
+.sound-waves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.sound-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--light-cream);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.music-toggle.playing .sound-wave {
+    animation: smoothWave 2s ease-out infinite;
+}
+
+.sound-wave:nth-child(1) { 
+    animation-delay: 0s; 
+}
+.sound-wave:nth-child(2) { 
+    animation-delay: 0.4s; 
+}
+.sound-wave:nth-child(3) { 
+    animation-delay: 0.8s; 
+}
+
+@keyframes smoothWave {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+        border-width: 1px;
+    }
+    50% {
+        opacity: 0.3;
+        border-width: 2px;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+        border-width: 0.5px;
+    }
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
+
+.music-toggle.loading .music-icon {
+    animation: spin 1s linear infinite;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .music-prompt .prompt-content {
+        margin: 20px;
+        padding: 30px 25px;
+        max-width: 85%;
+    }
+    
+    .music-prompt-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .prompt-btn {
+        width: 100%;
+        min-width: auto;
+        padding: 14px 30px;
+    }
+    
+    .music-player {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .music-toggle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .music-icon {
+        font-size: 20px;
+    }
+    
+    .prompt-content h3 {
+        font-size: 1.6em;
+    }
+    
+    .prompt-content p {
+        font-size: 1.1em;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .music-prompt .prompt-content {
+        margin: 15px;
+        padding: 25px 20px;
+    }
+    
+    .prompt-content h3 {
+        font-size: 1.4em;
+    }
+    
+    .prompt-content p {
+        font-size: 1em;
+    }
+    
+    .music-toggle {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .music-icon {
+        font-size: 18px;
+    }
+    
+    .prompt-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}

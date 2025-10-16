@@ -1,0 +1,504 @@
+/* Секция "Наша история" - блоки под заголовком */
+#story {
+    position: relative;
+    overflow: hidden;
+    background: var(--light-cream);
+    min-height: 80vh;
+    padding: 60px 0 40vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.story-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(
+            rgba(246, 244, 242, 0.1) 0%,
+            rgba(246, 244, 242, 0.3) 20%,
+            rgba(246, 244, 242, 0.6) 60%,
+            rgba(246, 244, 242, 0.8) 100%
+        ),
+        url('../images/story-bg.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+/* Заголовок секции */
+.story-header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 50px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.story-title {
+    font-size: 3.2em;
+    color: rgba(214, 183, 183);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-style: italic;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    line-height: 1.3;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* Основной контент - горизонтальное расположение на одной линии */
+.story-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Всегда две колонки */
+    gap: 30px;
+    align-items: start; /* Выравниваем по верху */
+    z-index: 2;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    min-height: 50vh;
+    max-height: 60vh;
+}
+
+/* Квадратная рамка для story-text */
+.story-text {
+    background: rgba(246, 244, 242, 0.92);
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 
+        var(--shadow-large),
+        0 0 0 2px var(--olive-green);
+    border: none;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    height: fit-content;
+    margin: 0;
+}
+
+.story-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(214, 183, 183, 0.1) 0%,
+        rgba(246, 244, 242, 0.8) 100%
+    );
+    z-index: -1;
+}
+
+.story-text p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+.story-text::after {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    font-size: 6em;
+    color: var(--dusty-pink);
+    opacity: 0.15;
+    font-family: var(--font-script);
+    line-height: 1;
+    z-index: 0;
+}
+
+/* Блок с видео - УБИРАЕМ фоновую рамку */
+.story-details {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: var(--light-cream);
+    box-shadow: none;
+    backdrop-filter: none;
+    border: none;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    height: fit-content;
+    align-self: start; /* Выравниваем по верху с текстом */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.story-details h3 {
+    font-size: 1.6em;
+    margin-bottom: 0;
+    color: var(--dark-gray);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-style: italic;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер видео */
+.video-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(212, 175, 55, 0.2);
+    background: var(--black);
+    transition: transform var(--transition-fast);
+    aspect-ratio: 9 / 16;
+}
+
+.story-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform var(--transition-fast);
+}
+
+.story-video:hover {
+    transform: scale(1.02);
+}
+
+.video-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(214, 183, 183, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 2px solid var(--light-cream);
+    box-shadow: var(--shadow-small);
+    backdrop-filter: blur(10px);
+    z-index: 3;
+}
+
+.video-play-button::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 18px solid var(--light-cream);
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    margin-left: 3px;
+}
+
+.video-play-button:hover {
+    background: rgba(214, 183, 183, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.video-caption {
+    font-style: italic;
+    color: var(--dark-gray);
+    font-size: 1em;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 0 15px;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        rgba(45, 45, 45, 0.1) 100%
+    );
+    pointer-events: none;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+/* Декоративные элементы для красоты */
+.story-text::after {
+    content: '❝';
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 3em;
+    color: var(--olive-green);
+    opacity: 0.1;
+    font-family: var(--font-script);
+    transform: rotate(180deg);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .story-title {
+        font-size: 2.8em;
+    }
+    
+    .story-content {
+        gap: 25px;
+        padding: 0 15px;
+    }
+    
+    .story-text {
+        padding: 22px 18px;
+    }
+    
+    .story-text p {
+        font-size: 1.1em;
+    }
+    
+    .video-container {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 992px) {
+    #story {
+        padding: 60px 0 35vh 0;
+        min-height: 70vh;
+    }
+    
+    .story-title {
+        font-size: 2.5em;
+    }
+    
+    .story-header {
+        margin-bottom: 40px;
+    }
+    
+    .story-content {
+        gap: 20px;
+        padding: 0 15px;
+        min-height: 40vh;
+        max-height: 50vh;
+    }
+    
+    .story-text {
+        padding: 20px 16px;
+    }
+    
+    .story-text p {
+        font-size: 1.1em;
+        line-height: 1.5;
+    }
+    
+    .story-details h3 {
+        font-size: 1.5em;
+    }
+    
+    .video-container {
+        max-width: 180px;
+    }
+}
+
+/* Для узких экранов - уменьшаем gap и размеры, но НЕ меняем grid */
+@media (max-width: 768px) {
+    #story {
+        padding: 50px 0 30vh 0;
+        min-height: 70vh;
+    }
+    
+    .story-title {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+        line-height: 1.3;
+    }
+    
+    .story-header {
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+    
+    .story-content {
+        gap: 20px;
+        padding: 0 15px;
+        min-height: 40vh;
+        max-height: 50vh;
+    }
+    
+    .story-text {
+        padding: 20px 15px;
+    }
+    
+    .story-text p {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+    
+    .story-details h3 {
+        font-size: 1.3em;
+    }
+    
+    .video-container {
+        max-width: 150px;
+    }
+    
+    .video-play-button {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .video-play-button::before {
+        border-left: 16px solid var(--light-cream);
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+    }
+    
+    .video-caption {
+        font-size: 0.8em;
+    }
+    
+    .story-text::after {
+        font-size: 4em;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .story-bg {
+        background-attachment: scroll;
+    }
+}
+
+/* Для очень узких экранов - еще больше уменьшаем, но сохраняем ряд */
+@media (max-width: 480px) {
+    #story {
+        padding: 40px 0 25vh 0;
+        min-height: 60vh;
+    }
+    
+    .story-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    
+    .story-header {
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+    
+    .story-content {
+        gap: 15px;
+        padding: 0 10px;
+        min-height: 35vh;
+        max-height: 45vh;
+    }
+    
+    .story-text {
+        padding: 15px 12px;
+    }
+    
+    .story-text p {
+        font-size: 0.9em;
+        line-height: 1.3;
+    }
+    
+    .story-details h3 {
+        font-size: 1.1em;
+    }
+    
+    .video-container {
+        max-width: 120px;
+    }
+    
+    .video-play-button {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .video-play-button::before {
+        border-left: 12px solid var(--light-cream);
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+    
+    .video-caption {
+        font-size: 0.7em;
+    }
+    
+    .story-text::after {
+        font-size: 3em;
+        top: 10px;
+        right: 12px;
+    }
+}
+
+/* Для экстремально узких экранов */
+@media (max-width: 360px) {
+    .story-content {
+        gap: 10px;
+        padding: 0 8px;
+    }
+    
+    .story-text {
+        padding: 12px 10px;
+    }
+    
+    .story-text p {
+        font-size: 0.85em;
+    }
+    
+    .video-container {
+        max-width: 100px;
+    }
+    
+    .story-details h3 {
+        font-size: 1em;
+    }
+}
+
+/* Для landscape ориентации на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    #story {
+        min-height: 120vh;
+        padding: 40px 0 30vh 0;
+    }
+    
+    .story-content {
+        gap: 15px;
+        min-height: 30vh;
+        max-height: 40vh;
+    }
+    
+    .story-text p {
+        font-size: 0.9em;
+    }
+    
+    .story-details h3 {
+        font-size: 1em;
+    }
+}

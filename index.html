@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полина и Дмитрий | Приглашение на свадьбу</title>
+    
+    <!-- CSS файлы -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/story.css">
+    <link rel="stylesheet" href="css/program.css">
+    <link rel="stylesheet" href="css/rsvp.css">
+    <link rel="stylesheet" href="css/music.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dresscode.css">
+    
+    <!-- Романтичные шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Промпт включения музыки - ПЕРВЫЙ элемент -->
+    <div class="music-prompt" id="musicPrompt">
+        <div class="prompt-content">
+            <div class="prompt-loader">
+                <div class="loader-spinner"></div>
+                <p>Загрузка приглашения...</p>
+            </div>
+            <h3>🎵 Романтичное настроение</h3>
+            <p>Хотите включить фоновую музыку для создания особой атмосферы?</p>
+            <div class="music-prompt-buttons">
+                <button class="prompt-btn btn-enable" id="enableMusic">Да, включить</button>
+                <button class="prompt-btn btn-skip" id="skipMusic">Пропустить</button>
+            </div>
+        </div>
+        <div class="decorative-circle"></div>
+    </div>
+
+    <!-- Фиксированная шапка -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-content">
+            <div class="header-left" id="headerLeft"></div>
+            <div class="header-right" id="headerRight"></div>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero dark-overlay">
+        <div class="hero-content">
+            <h1 class="hero-title">Полина & Дмитрий</h1>
+            <p class="hero-subtitle">Мы женимся!</p>
+            <div class="date hero-date">27 июня 2026</div>
+        </div>
+        
+        <!-- Золотые бусины -->
+        <div class="gold-bead large bead-1"></div>
+        <div class="gold-bead medium bead-2"></div>
+        <div class="gold-bead small bead-3"></div>
+        <div class="gold-bead large bead-4"></div>
+        <div class="gold-bead medium bead-5"></div>
+        <div class="gold-bead small bead-6"></div>
+        <div class="gold-bead medium bead-7"></div>
+        <div class="gold-bead small bead-8"></div>
+        <div class="gold-bead large bead-9"></div>
+        <div class="gold-bead medium bead-10"></div>
+    </section>
+
+    <!-- Секция "Наша история" -->
+    <section id="story">
+        <div class="story-bg"></div>
+        
+        <!-- Новый заголовок -->
+        <div class="story-header">
+            <h2 class="story-title">Приглашаем вас разделить с нами праздник создания новой семьи</h2>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Все началось с смс в телеграм: "У нас тут такое дело...", которое стало значимым в зарождении необычной истории любви.</p>
+                <p>Эту историю мы хотим разделить вместе с вами. Показать её во всех красках и так, как видим её мы.</p>
+            </div>
+            
+            <div class="story-details">
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <video class="story-video" controls poster="images/video-preview.jpg">
+                            <source src="videos/video1.MP4" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                        <div class="video-play-button"></div>
+                        <div class="video-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Программа -->
+    <section id="program">
+        <div class="container">
+            <h2>Программа дня</h2>
+            <div class="program-address">
+                <a href="https://yandex.ru/maps/?text=Улица+Александра+Матросова,+30х,+Artel+Loft" 
+                   target="_blank" 
+                   class="address-link"
+                   title="Открыть в картах">
+                    Место: Artel Loft
+                </a>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="time">15:00</div>
+                    <div class="event">
+                        <h3>Сбор гостей</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">16:00</div>
+                    <div class="event">
+                        <h3>Выездная регистрация</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">17:00</div>
+                    <div class="event">
+                        <h3>Праздничный банкет</h3>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">00:00</div>
+                    <div class="event">
+                        <h3>Завершение свадебного торжества</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+		
+		<!-- Дресс-код -->
+		<section id="dresscode">
+				<div class="container">
+						<h2>Дресс-код</h2>
+						<div class="dresscode-content">
+								<div class="dresscode-colors">
+										<div class="color-item">
+												<div class="color-box" style="background-color: #000000;"></div>
+												<span class="color-name">Чёрный</span>
+										</div>
+										<div class="color-item">
+												<div class="color-box" style="background-color: #FFFFFF;"></div>
+												<span class="color-name">Белый (для мужчин)</span>
+										</div>
+										<div class="color-item">
+												<div class="color-box" style="background-color: #C8A19C;"></div>
+												<span class="color-name">Пудровый</span>
+										</div>
+										<div class="color-item">
+												<div class="color-box" style="background-color: #F3ECE3;"></div>
+												<span class="color-name">Кремовый</span>
+										</div>
+								</div>
+								<div class="dresscode-text">
+										<p>Мы будем рады, если вы поддержите цветовую палитру нашего праздника в предложенных оттенках.</p>
+										<p class="dresscode-note">💫 С огромным уважением к нашей невесте, просим женщин воздержаться от нарядов в белом цвете.</p>
+								</div>
+						</div>
+				</div>
+		</section>
+
+    <!-- Подтверждение присутствия -->
+    <section id="rsvp">
+        <div class="container">
+            <h2>Подтвердите, пожалуйста, ваше присутствие</h2>
+            <p class="rsvp-deadline">В самое ближайшее время</p>
+            
+            <form class="rsvp-form" id="rsvpForm">
+                <!-- Имя гостя -->
+                <div class="form-group">
+                    <label for="guest_name">Ваше имя и фамилия *</label>
+                    <input type="text" id="guest_name" name="guest_name" class="form-input" required placeholder="Иван Иванов">
+                </div>
+                
+                <!-- Вариант присутствия -->
+                <div class="form-group">
+                    <label>Ваш ответ *</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="coming" class="radio-input" required>
+                            <span>Я буду</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="with_guest" class="radio-input">
+                            <span>Я буду не один</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="not_coming" class="radio-input">
+                            <span>К сожалению, не приду</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Поля для второго гостя (скрытые по умолчанию) -->
+                <div class="form-group hidden-field" id="guest2Fields">
+                    <label for="guest2_name">Имя и фамилия второго гостя *</label>
+                    <input type="text" id="guest2_name" name="guest2_name" class="form-input" placeholder="Мария Иванова">
+                </div>
+                
+                <!-- Напитки для гостя 1 -->
+                <div class="form-group">
+                    <label>Что будете пить? *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="red_dry" class="checkbox-input">
+                            <span>Красное сухое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="white_dry" class="checkbox-input">
+                            <span>Белое сухое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="red_semi" class="checkbox-input">
+                            <span>Красное полусладкое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="white_semi" class="checkbox-input">
+                            <span>Белое полусладкое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="champagne" class="checkbox-input">
+                            <span>Шампанское</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="strong" class="checkbox-input">
+                            <span>Крепкий алкоголь</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks" value="non_alcoholic" class="checkbox-input">
+                            <span>Безалкогольные напитки</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Напитки для гостя 2 (скрытые по умолчанию) -->
+                <div class="form-group hidden-field" id="drink2Fields">
+                    <label>Что будет пить второй гость? *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="red_dry" class="checkbox-input">
+                            <span>Красное сухое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="white_dry" class="checkbox-input">
+                            <span>Белое сухое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="red_semi" class="checkbox-input">
+                            <span>Красное полусладкое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="white_semi" class="checkbox-input">
+                            <span>Белое полусладкое</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="champagne" class="checkbox-input">
+                            <span>Шампанское</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="strong" class="checkbox-input">
+                            <span>Крепкий алкоголь</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="drinks2" value="non_alcoholic" class="checkbox-input">
+                            <span>Безалкогольные напитки</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-icon">🤖</span> Отправить в Telegram
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <!-- Обратный отсчёт -->
+            <div class="countdown-container">
+                <div class="countdown-title">До нашего особенного дня осталось:</div>
+                <div class="countdown" id="weddingCountdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="countdownDays">00</span>
+                        <span class="countdown-label">дней</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="countdownHours">00</span>
+                        <span class="countdown-label">часов</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="countdownMinutes">00</span>
+                        <span class="countdown-label">минут</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="countdownSeconds">00</span>
+                        <span class="countdown-label">секунд</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Фраза под отсчётом -->
+            <p>Ждем с нетерпением этого дня!</p>
+        </div>
+    </footer>
+
+    <!-- Музыкальный плеер -->
+    <div class="music-player">
+        <div class="music-toggle" id="musicToggle">
+            <div class="music-icon">🎵</div>
+            <div class="sound-waves">
+                <div class="sound-wave"></div>
+                <div class="sound-wave"></div>
+                <div class="sound-wave"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Аудио элемент -->
+    <audio id="backgroundMusic" loop>
+        <source src="music/background-music.mp3" type="audio/mp3">
+        <source src="music/background-music.ogg" type="audio/ogg">
+        Ваш браузер не поддерживает аудио элементы.
+    </audio>
+
+    <!-- JavaScript файлы -->
+    <script src="js/music-player.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/video-controls.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/telegram-form.js"></script>
+</body>
+</html>

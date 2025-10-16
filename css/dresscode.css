@@ -1,0 +1,155 @@
+/* Секция дресс-кода */
+#dresscode {
+    background: linear-gradient(135deg, var(--light-cream) 0%, var(--dusty-pink-light) 100%);
+    padding: 80px 0;
+    text-align: center;
+}
+
+#dresscode h2 {
+    font-size: 3.2em;
+    margin-bottom: 50px;
+    color: var(--dark-gray);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Цветовая палитра */
+.dresscode-colors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.color-box {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    border: 3px solid var(--gold);
+    box-shadow: 
+        var(--shadow-medium),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.color-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
+.color-box:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 15px 30px rgba(212, 175, 55, 0.3),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.color-name {
+    font-size: 1.2em;
+    color: var(--dark-gray);
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Текстовая часть */
+.dresscode-text {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large);
+    border: 2px solid var(--gold-light);
+    backdrop-filter: blur(10px);
+}
+
+.dresscode-text p {
+    font-size: 1.3em;
+    line-height: 1.7;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.dresscode-note {
+    background: linear-gradient(135deg, rgba(214, 183, 183, 0.1) 0%, rgba(246, 244, 242, 0.3) 100%);
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--dusty-pink);
+    font-weight: 500;
+    color: var(--dark-gray);
+    margin-top: 25px !important;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    #dresscode {
+        padding: 60px 0;
+    }
+    
+    #dresscode h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+    }
+    
+    .dresscode-colors {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .color-box {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .dresscode-text {
+        padding: 30px 25px;
+    }
+    
+    .dresscode-text p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .dresscode-colors {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 200px;
+        margin: 0 auto 30px;
+    }
+    
+    .color-box {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .dresscode-text {
+        padding: 25px 20px;
+    }
+    
+    .dresscode-text p {
+        font-size: 1em;
+    }
+    
+    #dresscode h2 {
+        font-size: 2.2em;
+    }
+}

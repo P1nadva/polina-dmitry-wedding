@@ -1,0 +1,49 @@
+/* CSS переменные - цветовая палитра */
+:root {
+    /* Основная цветовая палитра */
+    --dark-gray: #2D2D2D;
+    --dark-gray-light: #3D3D3D;
+    --dark-gray-dark: #1A1A1A;
+    
+    --light-cream: #F6F4F2;
+    --light-cream-dark: #EEE6DC;
+    
+    --dusty-pink: #D6B7B7;
+    --dusty-pink-light: #E6C9C9;
+    --dusty-pink-dark: #C49E9E;
+    
+    --olive-green: #516043;
+    --olive-green-light: #617553;
+    --olive-green-dark: #3F4D34;
+    
+    --gold: #D4AF37;
+    --gold-light: #E6C158;
+    --gold-dark: #B8941F;
+    
+    /* Дополнительные цвета */
+    --white: #FFFFFF;
+    --black: #000000;
+    --shadow: rgba(45, 45, 45, 0.1);
+    
+    /* Шрифты */
+    --font-primary: 'Cormorant Garamond', serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-script: 'Parisienne', cursive;
+    
+    /* Размеры */
+    --container-width: 1200px;
+    --section-padding: 100px;
+    --border-radius: 20px;
+    --border-radius-small: 10px;
+    
+    /* Транзишены */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    --transition-slow: 1s ease;
+    
+    /* Тени */
+    --shadow-small: 0 2px 10px var(--shadow);
+    --shadow-medium: 0 5px 20px var(--shadow);
+    --shadow-large: 0 10px 30px var(--shadow);
+    --shadow-extra-large: 0 20px 50px var(--shadow);
+}

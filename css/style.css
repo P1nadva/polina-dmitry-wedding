@@ -1,0 +1,279 @@
+/* style.css - оптимизированная версия */
+/* Основной файл стилей - импортирует все остальные */
+/* Этот файл должен быть последним в порядке подключения */
+
+/* Золотые бусины - общие стили */
+.gold-bead {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, #ffd700, var(--gold), #b8860b);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 20px rgba(212, 175, 55, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.3);
+    z-index: 2;
+    transform: translateZ(0); /* Оптимизация аппаратного ускорения */
+    backface-visibility: hidden; /* Улучшение производительности */
+}
+
+.gold-bead.large {
+    width: 12px;
+    height: 12px;
+}
+
+.gold-bead.medium {
+    width: 8px;
+    height: 8px;
+}
+
+.gold-bead.small {
+    width: 5px;
+    height: 5px;
+}
+
+/* Позиционирование бусин */
+.bead-1 { top: 20%; left: 10%; }
+.bead-2 { top: 15%; right: 15%; }
+.bead-3 { bottom: 25%; left: 8%; }
+.bead-4 { bottom: 30%; right: 12%; }
+.bead-5 { top: 40%; left: 5%; }
+.bead-6 { top: 35%; right: 8%; }
+.bead-7 { bottom: 15%; left: 20%; }
+.bead-8 { top: 60%; right: 5%; }
+.bead-9 { top: 10%; left: 25%; }
+.bead-10 { bottom: 40%; right: 25%; }
+
+/* Оптимизация анимаций для производительности */
+.hero-content,
+.gold-bead,
+.section-animate {
+    will-change: transform, opacity;
+}
+
+/* Улучшение производительности скролла */
+.hero {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Адаптивность для бусин */
+@media (max-width: 768px) {
+    .gold-bead.large {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .gold-bead.medium {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .gold-bead.small {
+        width: 4px;
+        height: 4px;
+    }
+    
+    .bead-5, .bead-6, .bead-9, .bead-10 {
+        display: none;
+    }
+    
+    /* Уменьшаем количество анимаций на слабых устройствах */
+    .hero-content-fading {
+        transition: opacity 0.4s ease !important;
+    }
+    
+    .gold-bead {
+        transform: translateZ(0);
+    }
+}
+
+/* Утилитарные классы */
+.text-center { text-align: center; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+
+/* Специфические исправления и переопределения */
+.touch-device .hero-content {
+    cursor: default;
+}
+
+.no-touch-device .hero-content {
+    cursor: default;
+}
+
+/* Гарантируем правильный порядок слоев */
+.main-header {
+    z-index: 1000 !important;
+}
+
+.hero {
+    z-index: 1;
+}
+
+section:not(.hero) {
+    position: relative;
+    z-index: 2;
+}
+
+.music-player {
+    z-index: 1001 !important; /* Выше шапки */
+}
+
+.music-prompt {
+    z-index: 10000 !important; /* Самый высокий */
+}
+
+/* Оптимизация производительности */
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Улучшение доступности */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print стили */
+@media print {
+    .music-player,
+    .music-prompt,
+    .video-play-button {
+        display: none !important;
+    }
+    
+    .hero {
+        background: none !important;
+        color: var(--dark-gray) !important;
+        height: auto !important;
+    }
+    
+    .date {
+        background: var(--light-cream) !important;
+        color: var(--dark-gray) !important;
+        border-color: var(--dark-gray) !important;
+    }
+    
+    .gold-bead {
+        display: none !important;
+    }
+}
+
+/* Оптимизация для медленных соединений */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll;
+    }
+    
+    .story-bg {
+        background-attachment: scroll;
+    }
+}
+
+/* Улучшение контрастности для доступности */
+.btn:focus,
+.prompt-btn:focus,
+.music-toggle:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* Улучшение загрузки изображений */
+.story-video {
+    background: var(--dark-gray);
+}
+
+/* Медиа-запросы для высоких экранов */
+@media (min-height: 1000px) {
+    .hero {
+        min-height: 100vh;
+    }
+    
+    #story {
+        min-height: 100vh;
+    }
+}
+
+/* Поддержка темной темы (если понадобится в будущем) */
+@media (prefers-color-scheme: dark) {
+    /* Базовые настройки для будущей поддержки темной темы */
+}
+
+/* Оптимизация для очень маленьких экранов */
+@media (max-width: 360px) {
+    .gold-bead.large {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .gold-bead.medium {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .gold-bead.small {
+        width: 3px;
+        height: 3px;
+    }
+    
+    .bead-3, .bead-4, .bead-7, .bead-8 {
+        display: none;
+    }
+}
+
+/* Поддержка ориентации landscape на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 0;
+    }
+    
+    .music-prompt .prompt-content {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* Улучшение читаемости текста */
+p, li {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Оптимизация для Retina дисплеев */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .gold-bead {
+        box-shadow: 
+            0 0 30px rgba(212, 175, 55, 0.8),
+            inset 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Fallback стили для случаев ошибок JavaScript */
+.no-js .section-animate,
+.animation-fallback .section-animate {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.no-js .main-header,
+.animation-fallback .main-header {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.no-js .header-left,
+.no-js .header-right,
+.animation-fallback .header-left,
+.animation-fallback .header-right {
+    opacity: 1 !important;
+    transform: none !important;
+}

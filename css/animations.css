@@ -1,0 +1,401 @@
+/* animations.css - полная версия */
+
+/* Фиксированная шапка - не влияет на layout */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: rgba(45, 45, 45, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    pointer-events: none; /* Изначально отключаем клики */
+}
+
+.main-header.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 40px;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.header-left, .header-right {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.header-left.visible, .header-right.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* УВЕЛИЧИВАЕМ текст "Полина и Дмитрий" */
+.header-left {
+    font-size: 2em; /* Было 1.4em */
+    color: var(--light-cream);
+    font-family: var(--font-heading);
+    font-weight: 600; /* Делаем полужирным */
+    letter-spacing: 1.5px; /* Увеличиваем межбуквенный интервал */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Уменьшаем текст с датой */
+.header-right {
+    font-size: 1.3em; /* Уменьшили с 1.8em */
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.15);
+    padding: 8px 18px; /* Уменьшили отступы */
+    border-radius: 25px;
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-weight: 600;
+    backdrop-filter: blur(15px);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    max-width: 200px; /* Ограничиваем ширину */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Убираем отступы для body - шапка теперь поверх контента */
+body {
+    padding-top: 0px !important;
+}
+
+/* Параллакс эффект для героя */
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    padding: 0 20px;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Стили для плавного исчезновения hero-content */
+.hero-content-fading {
+    transition: 
+        transform 0.1s linear,
+        opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform, opacity;
+}
+
+.hero-content-hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    visibility: hidden;
+    transition: 
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0.6s step-end !important;
+}
+
+/* Плавное появление элементов героя при загрузке */
+.hero-content > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.page-loaded .hero-content > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.page-loaded .hero-title { 
+    transition-delay: 0.3s; 
+}
+
+body.page-loaded .hero-subtitle { 
+    transition-delay: 0.5s; 
+}
+
+body.page-loaded .hero-date { 
+    transition-delay: 0.7s; 
+}
+
+/* Анимация перехода отдельных элементов в шапку */
+.hero-element-fading {
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero-title.fading-to-header {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.9);
+    pointer-events: none;
+}
+
+.hero-subtitle.fading-to-header {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+    pointer-events: none;
+}
+
+.hero-date.fading-to-header {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+    pointer-events: none;
+}
+
+/* Анимация появления секций при скролле */
+.section-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Улучшенные анимации для золотых бусин */
+.gold-bead {
+    animation: 
+        gentleFloat 8s ease-in-out infinite,
+        softSparkle 6s ease-in-out infinite;
+    position: absolute;
+    z-index: 2;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    33% { 
+        transform: translateY(-6px) rotate(120deg) scale(1.02);
+    }
+    66% { 
+        transform: translateY(-3px) rotate(240deg) scale(0.98);
+    }
+}
+
+@keyframes softSparkle {
+    0%, 100% { 
+        opacity: 0.6;
+        box-shadow: 
+            0 0 6px rgba(212, 175, 55, 0.2),
+            inset 0 0 3px rgba(255, 255, 255, 0.1);
+    }
+    50% { 
+        opacity: 0.9;
+        box-shadow: 
+            0 0 12px rgba(255, 215, 0, 0.4),
+            0 0 20px rgba(255, 215, 0, 0.15),
+            inset 0 0 6px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Разные задержки для бусин для эффекта волны */
+.bead-1 { animation-delay: 0s, 0s; }
+.bead-2 { animation-delay: 1s, 0.8s; }
+.bead-3 { animation-delay: 2s, 1.6s; }
+.bead-4 { animation-delay: 3s, 2.4s; }
+.bead-5 { animation-delay: 4s, 3.2s; }
+.bead-6 { animation-delay: 5s, 4s; }
+.bead-7 { animation-delay: 6s, 4.8s; }
+.bead-8 { animation-delay: 7s, 5.6s; }
+.bead-9 { animation-delay: 0.5s, 0.4s; }
+.bead-10 { animation-delay: 1.5s, 1.2s; }
+
+/* Параллакс эффект для бусин при скролле */
+.gold-bead.scroll-parallax {
+    transition: transform 0.1s ease-out;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .main-header {
+        height: 90px;
+        background: rgba(45, 45, 45, 0.98); /* Более плотный фон на мобильных */
+        backdrop-filter: blur(25px); /* Усиливаем размытие */
+        -webkit-backdrop-filter: blur(25px); /* Для Safari */
+    }
+    
+    .header-content {
+        padding: 0 20px;
+    }
+    
+    /* Уменьшаем шапку на мобильных */
+    .header-left {
+        font-size: 1.3em; /* Уменьшили с 1.6em */
+    }
+    
+    .header-right {
+        font-size: 1.1em; /* Уменьшили с 1.4em */
+        padding: 6px 12px; /* Уменьшили отступы */
+        max-width: 150px; /* Уменьшили максимальную ширину */
+    }
+
+    body {
+        padding-top: 0px !important; /* Меньший отступ для мобильных */
+    }
+
+    /* Уменьшаем амплитуду анимаций на мобильных */
+    .hero-title.fading-to-header {
+        transform: translateY(-20px) scale(0.9);
+    }
+    
+    .hero-subtitle.fading-to-header,
+    .hero-date.fading-to-header {
+        transform: translateY(-15px) scale(0.95);
+    }
+    
+    .section-animate {
+        transform: translateY(30px);
+    }
+    
+    /* Более быстрые анимации на мобильных */
+    .hero-content-fading {
+        transition: 
+            transform 0.1s linear,
+            opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    
+    .hero-content-hidden {
+        transition: 
+            opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+            visibility 0.4s step-end !important;
+    }
+    
+    .hero-element-fading {
+        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .main-header {
+        height: 60px;
+        background: rgba(45, 45, 45, 0.99); /* Еще плотнее на очень маленьких экранах */
+    }
+
+    body {
+        padding-top: 0px !important;
+    }
+
+    .header-left {
+        font-size: 1.1em; /* Уменьшили с 1.4em */
+    }
+    
+    .header-right {
+        font-size: 0.9em; /* Уменьшили с 1.2em */
+        padding: 5px 10px;
+        max-width: 130px;
+    }
+}
+
+/* Для больших экранов (более 1200px) */
+@media (min-width: 1200px) {
+    .header-left {
+        font-size: 2.2em; /* Еще больше на больших экранах */
+    }
+    
+    .header-right {
+        font-size: 1.6em; /* Уменьшили с 2em */
+        padding: 10px 25px;
+    }
+}
+
+/* Отключение анимаций для пользователей с prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .hero-content {
+        transform: none !important;
+    }
+    
+    .main-header {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .header-left,
+    .header-right {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .hero-content > * {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .section-animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .hero-content-hidden {
+        opacity: 0 !important;
+        visibility: hidden;
+    }
+}
+
+/* Улучшение читаемости текста в шапке */
+.header-left {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header-right {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: all 0.3s ease; /* Плавные переходы при изменении размера */
+}
+
+/* Эффект при наведении на дату */
+.header-right:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.main-header {
+    z-index: 1000 !important;
+}
+
+/* Убеждаемся, что другие элементы не перекрывают шапку */
+section:not(.hero) {
+    position: relative;
+    z-index: 1; /* Меньше чем у шапки */
+}
+
+.hero {
+    z-index: 2;
+}
+
+.music-player {
+    z-index: 1001 !important;
+}
+
+.music-prompt {
+    z-index: 10000 !important;
+}
